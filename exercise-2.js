@@ -1,42 +1,26 @@
 function changeVocals(str) {
     //code di sini
-    let result = ''
-    let vocalKecil = 'abijuvefop'
-    let vocalBesar = 'ABIJUVEFOP'
-    let hurufKecil = 'bcdfghjklmnpqrstvwxyz'
-    let hurufBesar = 'BCDFGHJKLMNPQRSTVWXYZ'
+    var arrStr = str.split('');
+    var alfabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var hurufVokal = 'aiueoAIUEO';
+    var indeks;
+    var hasil = [];
 
-    for (i=0; i<str.length; i++) {
-        let flag = false
-            for (j= 0; j < hurufKecil.length; j++) {
-                if (str[i] === hurufKecil[j]) {
-                    result += hurufBesar[j]
-                    flag = true
-                    break
-                }
-                if (str[i] === hurufBesar[j]) {
-                    result += hurufKecil[j]
-                    flag = true
-                    break
-                }
+    for (let i = 0; i < arrStr.length; i++) {
+        for (let j = 0; j < hurufVokal.length; j++) {
+            if (arrStr[i] === hurufVokal[j]) {
+                indeks = alfabet.indexOf(arrStr[i]) + 1;
+                arrStr[i] = alfabet[indeks];
             }
-            for (let k = 0 ; k < vocalKecil.length; k++) {
-                if (str[i] === vocalKecil[k]) {
-                    result += vocalBesar[k+1]
-                    flag = true
-                    break
-                }
-                if (str[i] === vocalBesar[k]) {
-                    result += vocalKecil[k+1]
-                    flag = true
-                    break
-                }
-            }
-            if (!flag) {
-                result += str[i]
-            }
+        }
+        hasil.push(arrStr[i]);
     }
-    return result
+    let result = ''
+    for (let i = 0; i < hasil.length; i++) {
+        result += hasil[i]
+    }
+
+    return result;
 }
 
 function reverseWord(str) {
@@ -51,8 +35,28 @@ function reverseWord(str) {
 
 function setLowerUpperCase(str) {
     //code di sini
-    let result = str.toLowerCase()
+    let result = ''
+    let hurufKecil = 'abcdefghijklmnopqrstuvwxyz'
+    let hurufBesar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+    for (i = 0; i < str.length; i++) {
+        let flag = false
+        for (j = 0; j < hurufKecil.length; j++) {
+            if (str[i] === hurufKecil[j]) {
+                result += hurufBesar[j]
+                flag = true
+                break
+            }
+            if (str[i] === hurufBesar[j]) {
+                result += hurufKecil[j]
+                flag = true
+                break
+            }
+        }
+        if (!flag) {
+            result += str[i]
+        }
+    }
     return result
 }
 
@@ -85,12 +89,13 @@ function passwordGenerator(name) {
 
     let modifyVocal = changeVocals(name)
     let wordReverse = reverseWord(modifyVocal)
-    let noSpace = removeSpaces(wordReverse)
+    let lowUpCase = setLowerUpperCase(wordReverse)
+    let noSpace = removeSpaces(lowUpCase)
 
     return noSpace
 }
 
 console.log(passwordGenerator('Sergei Dragunov')); // 'VPNVGBRdJFGRFs'
-// console.log(passwordGenerator('iputra')); // 'BRTVPJDVYHBwJRTJMJd'
+console.log(passwordGenerator('Dimitri Wahyudiputra')); // 'BRTVPJDVYHBwJRTJMJd'
 console.log(passwordGenerator('Alexei')); // 'JFXFLb'
-// console.log(passwordGenerator('Alex')); // 'Minimal karakter yang diinputkan adalah 5 karakter'
+console.log(passwordGenerator('Alex')); // 'Minimal karakter yang diinputkan adalah 5 karakter'
