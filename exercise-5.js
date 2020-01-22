@@ -1,5 +1,8 @@
 function hapusSimbol(str) {
     // you can only write your code here!
+
+    /**Ini cara manual nya 
+
     let huruf = 'abcdefghijklmnopqrstuvwxyz'
     let angka = '1234567890'
     let result = ''
@@ -17,7 +20,14 @@ function hapusSimbol(str) {
     }
 
     return result
-  }
+
+*/
+
+/**Ini dengan menggunakan regex */
+
+return str.replace(/[^\w]/gi, '');
+
+}
   
   // TEST CASES
   console.log(hapusSimbol('test%$4aa')); // test4aa

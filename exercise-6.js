@@ -1,5 +1,8 @@
 function cariPelaku(str) {
     // you can only write your code here!
+
+/**  ---Ini Cara Manual---
+ * 
     let hurufYgDicari = 'abc'
     
     let count = 0
@@ -13,6 +16,14 @@ function cariPelaku(str) {
         }
     }
     return count
+
+*/
+
+/** 
+ * Ini dengan Regex
+*/
+
+return str.match(/abc+/g).length;
   }
   
   // TEST CASES
