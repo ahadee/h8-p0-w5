@@ -11,7 +11,6 @@ function attack (damage) {
     let result = damageAttack - numAttack
 
     return result
-
   }
   
   // TEST CASE
